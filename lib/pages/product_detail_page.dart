@@ -10,7 +10,8 @@ class ProductDetailPage extends StatelessWidget {
     final product = ModalRoute.of(context)!.settings.arguments as Product;
     return Scaffold(
       appBar: AppBar(
-        title: Text(product.title),
+        title: Text(product.title,
+        ),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
     );

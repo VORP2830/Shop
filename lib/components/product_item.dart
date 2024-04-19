@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop/utils/app_routes.dart';
 
 import '../models/product.dart';
-import '../pages/product_detail_page.dart';
 
 class ProductItem extends StatelessWidget {
-  final Product product;
-  const ProductItem(this.product, {super.key});
-
   @override
   Widget build(BuildContext context) {
+    final product = Provider.of<Product>(context);
     //Aqui estamos utilizando o widget ClipRRect para arredondar as bordas
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
@@ -33,10 +31,12 @@ class ProductItem extends StatelessWidget {
             backgroundColor: Colors.black87,
             leading: IconButton(
               icon: Icon(
-                Icons.favorite,
+                product.isFavorite ? Icons.favorite : Icons.favorite_border,
                 color: Theme.of(context).colorScheme.secondary,
               ),
-              onPressed: () {},
+              onPressed: () {
+                product.toggleFavorite();
+              },
             ),
             title: Text(
               product.title,

@@ -1,4 +1,6 @@
-class Product {
+import 'package:flutter/material.dart';
+
+class Product with ChangeNotifier{
   final String id;
   final String title;
   final String description;
@@ -16,7 +18,10 @@ class Product {
   });
   //Essa função é responsável por mudar o estado do produto 
   //de favorito para não favorito e vice-versa.
-  void toggleFavoriteStatus() {
+  void toggleFavorite() {
     isFavorite = !isFavorite;
+    //Essa função é responsável por notificar os listeners
+    //que estão escutando as mudanças no estado do produto
+    notifyListeners();
   }
 }

@@ -5,12 +5,15 @@ import 'package:shop/models/product.dart';
 import 'package:shop/models/product_list.dart';
 
 class ProductGrid extends StatelessWidget {
+  final bool showFavoriteOnly;
+  ProductGrid(this.showFavoriteOnly);
   @override
   Widget build(BuildContext context) {
     //Aqui estamos obtendo a instância de ProductList que foi provida
     //pelo ChangeNotifierProvider no arquivo main.dart
     final provider = Provider.of<ProductList>(context);
-    List<Product> loadedProducts = provider.items;
+    List<Product> loadedProducts =
+        showFavoriteOnly ? provider.favoriteItems : provider.items;
     //Aqui estamos utilizando o GridView.builder para exibir os produtos
     //em uma grade. O GridView.builder é uma versão otimizada do GridView
     //que cria os itens conforme eles são exibidos na tela.

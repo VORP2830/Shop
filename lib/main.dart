@@ -9,6 +9,8 @@ import 'package:shop/utils/app_routes.dart';
 
 import 'models/product_list.dart';
 import 'pages/cart_page.dart';
+import 'pages/product_form_page.dart';
+import 'pages/products_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -50,6 +52,8 @@ class MyApp extends StatelessWidget {
           AppRoutes.PRODUCT_DETAIL: (_) => const ProductDetailPage(),
           AppRoutes.CART: (_) => const CartPage(),
           AppRoutes.ORDERS: (_) => const OrdersPage(),
+          AppRoutes.PRODUCTS: (_) => const ProductsPage(),
+          AppRoutes.PRODUCT_FORM: (_) => const ProductFormPage(),
         },
         //Removendo a faixa de debug
         debugShowCheckedModeBanner: false,

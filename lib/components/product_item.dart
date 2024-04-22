@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/product.dart';
+import '../models/product_list.dart';
+import '../utils/app_routes.dart';
 
 class ProductItem extends StatelessWidget {
   final Product product;
@@ -23,12 +26,46 @@ class ProductItem extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.edit),
               color: Theme.of(context).colorScheme.primary,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  AppRoutes.PRODUCT_FORM,
+                  arguments: product,
+                );
+              },
             ),
             IconButton(
               icon: const Icon(Icons.delete),
               color: Theme.of(context).colorScheme.error,
-              onPressed: () {},
+              onPressed: () {
+                showDialog<bool>(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                    title: const Text('Excluir Produto'),
+                    content: const Text('Tem Certeza?'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          //Aqui fechamos o dialogo e retornamos false para o then,
+                          Navigator.of(ctx).pop(false);
+                        },
+                        child: const Text('Não'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          //Aqui fechamos o dialogo e retornamos true para o then,
+                          Navigator.of(ctx).pop(true);
+                        },
+                        child: const Text('Sim'),
+                      ),
+                    ],
+                  ),
+                ).then(
+                  (_) => {
+                    Provider.of<ProductList>(context, listen: false)
+                        .removeProduct(product)
+                  },
+                );
+              },
             ),
           ],
         ),

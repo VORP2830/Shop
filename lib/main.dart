@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/models/auth.dart';
 import 'package:shop/models/cart.dart';
 import 'package:shop/models/orders_list.dart';
+import 'package:shop/pages/auth_page.dart';
 import 'package:shop/pages/orders_page.dart';
 import 'package:shop/pages/product_detail_page.dart';
 import 'package:shop/pages/products_overview_page.dart';
@@ -34,6 +36,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => OrdersList(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => Auth(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -48,6 +53,7 @@ class MyApp extends StatelessWidget {
         ),
         //home: ProductsOverViewPage(),
         routes: {
+          AppRoutes.AUTH_HOME: (_) => const AuthPage(),
           AppRoutes.HOME: (_) => ProductsOverViewPage(),
           AppRoutes.PRODUCT_DETAIL: (_) => const ProductDetailPage(),
           AppRoutes.CART: (_) => const CartPage(),

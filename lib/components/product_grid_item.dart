@@ -8,6 +8,7 @@ import '../models/product.dart';
 class ProductGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final msg = ScaffoldMessenger.of(context);
     //Aqui estamos utilizando o Provider.of para pegar o produto que foi passado
     final product = Provider.of<Product>(
       context,

@@ -9,6 +9,7 @@ import 'package:shop/pages/orders_page.dart';
 import 'package:shop/pages/product_detail_page.dart';
 import 'package:shop/pages/products_overview_page.dart';
 import 'package:shop/utils/app_routes.dart';
+import 'package:shop/utils/custom_route.dart';
 
 import 'models/product_list.dart';
 import 'pages/cart_page.dart';
@@ -65,6 +66,12 @@ class MyApp extends StatelessWidget {
           ),
           fontFamily: 'Lato',
           useMaterial3: true,
+          pageTransitionsTheme: PageTransitionsTheme(
+            builders: {
+              TargetPlatform.android: CustomPageTransitionBuilder(),
+              TargetPlatform.iOS: CustomPageTransitionBuilder(),
+            },
+          ),
         ),
         //home: ProductsOverViewPage(),
         routes: {
